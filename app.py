@@ -12,13 +12,10 @@ def new_df(sheetname, startcell='A1'):
     temp_df = pd.DataFrame(data[1:], columns=data[0])
     return temp_df
 
-df = new_df(sheetname)
-X = df.index
-
 def draw_traces(df):
-    plots = []
+    traces = []
     for d in df.columns:
-        plots.append(
+        traces.append(
             Scatter(
                 x=X, 
                 y=df[d],
@@ -27,7 +24,10 @@ def draw_traces(df):
         )
     return traces
 
+df = new_df(sheetname)
+X = df.index
 data = draw_traces(df)
+
 layout = Layout(
     title = graph_title,
     showlegend = True,
